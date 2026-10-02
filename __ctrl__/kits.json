@@ -1,0 +1,16 @@
+{
+  "kits": [
+    {
+      "id": "svelte",
+      "label": "Elysia-Svelte",
+      "source": "../elysia-svelte/frontend",
+      "repo": "https://github.com/soshyant-joshaghani/Elysia-Svelte.git",
+      "github": "soshyant-joshaghani/Elysia-Svelte",
+      "branch": "main",
+      "runtime": "node",
+      "dev": ["npm", "run", "dev"],
+      "cwd": "frontend/web",
+      "scaffold": "svelte"
+    }
+  ]
+}
