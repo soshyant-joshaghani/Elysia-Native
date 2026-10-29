@@ -1,0 +1,36 @@
+# Dev routes — host processes (Vite + uvicorn) and TLS for *.localhost.
+
+http:
+  routers:
+    elysia-native-backend-host:
+      rule: Host(`api.localhost`)
+      entryPoints:
+        - http
+        - https
+      service: elysia-native-backend-host
+    elysia-native-frontend-host:
+      rule: Host(`dashboard.localhost`)
+      entryPoints:
+        - http
+        - https
+      service: elysia-native-frontend-host
+
+  services:
+    elysia-native-backend-host:
+      loadBalancer:
+        servers:
+          - url: http://host.docker.internal:8000
+    elysia-native-frontend-host:
+      loadBalancer:
+        servers:
+          - url: http://host.docker.internal:5000
+
+tls:
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: default
+        domain:
+          main: localhost
+          sans:
+            - "*.localhost"
